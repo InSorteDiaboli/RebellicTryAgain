@@ -1,0 +1,518 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Rebellic"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:WebService="using:WebService"
+    x:Class="Rebellic.MainPage"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <local:BookingHandler/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/wp2.jpg"/>
+        </Grid.Background>
+        <Rectangle Width="1920" Height="1080" Fill="#26000000" />
+
+        <Rectangle x:ConnectionId='2' x:Name="btnShowPaneBack" Width="36" Height="30" Margin="35,39,0,0"                              VerticalAlignment="Top" HorizontalAlignment="Left" Fill="#33000000" Visibility="Collapsed"/>
+        <TextBlock x:ConnectionId='3' x:Name="btnShowPane" FontSize="26" FontFamily="Segoe MDL2 Assets" Text="&#xE700;" Margin="40,40,0,0"                              Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Left"                                                                                          />
+        <Popup x:ConnectionId='4' x:Name="MenuPopup" IsOpen="True">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Left"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <StackPanel x:ConnectionId='67' x:Name="MainMenu" Padding="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="1080" Width="260" Margin="0,0,0,0" Background="White" >
+                <TextBlock x:ConnectionId='68' x:Name="btnClosePane" FontSize="22" FontFamily="Segoe MDL2 Assets" Text="&#xE8BB;" Margin="0,40,20,0"                              Foreground="#FF9B0000" VerticalAlignment="Top" HorizontalAlignment="Right"                                                                    />
+                <Grid Margin="0,0,0,0">
+                    <Rectangle x:ConnectionId='69' x:Name="hoverEffect1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Width="259" Fill="#0C000000" Margin="0,20,0,0" Visibility="Collapsed"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,20,0,0">
+                        <TextBlock x:ConnectionId='71' x:Name="NavMainPage" FontWeight="SemiBold" AccessKey="0" Text="BOOK EN TID" Width="260" HorizontalAlignment="Left" Height="50" TextAlignment="Center" Padding="17 15" Foreground="#FF2196F3"                                                                                                          />
+                        <TextBlock x:ConnectionId='72' x:Name="NavLogInd" AccessKey="1" Text="LOG IND/OPRET BRUGER" Width="260" HorizontalAlignment="Left" Height="50" TextAlignment="Center" Padding="17 15" Foreground="#FF2196F3"                                                                                                          />
+                        <TextBlock x:ConnectionId='73' x:Name="NavCustProfile" Visibility="Collapsed" AccessKey="2" Text="PROFIL" Width="260" HorizontalAlignment="Left" Height="50" TextAlignment="Center" Padding="17 15" Foreground="#FF2196F3"                                                                                                          />
+                    </StackPanel>
+                    <Grid x:ConnectionId='70' x:Name="GridCursor1" Width="5" Height="50" Background="#FF2196F3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="256,20,0,0"/>
+                </Grid>
+            </StackPanel>
+        </Popup>
+        <Grid Background="#7FFFFFFF" Width="350" Height="50" Margin="0,0,0,740" Visibility="{Binding ErrorMessageVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <TextBlock Text="{Binding ErrorMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="0,13,0,0" Width="350" Height="50" TextAlignment="Center" Foreground="#FFD60000" FontWeight="SemiBold"/>
+        </Grid>
+        <Grid>
+            <Grid x:ConnectionId='21' x:Name="VælgService" Width="900" Height="560" Background="#D8FFFFFF" Margin="0,0,0,100" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding ProductViewVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="60" Background="White" Padding="9 0">
+                    <TextBlock Text="VÆLG SERVICE" Width="675" HorizontalAlignment="Center" Padding="207,0,2,0" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="24" Foreground="#FF333333" TextAlignment="Center" FontFamily="Segoe UI"/>
+                    <TextBlock x:ConnectionId='65' x:Name="videreTilMedarT" Text="VÆLG MEDARBEJDER" HorizontalAlignment="Center" VerticalAlignment="Center" Width="165" FontWeight="SemiBold" FontSize="16" Foreground="{Binding VidereTilMedarbejder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingVidere"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock x:ConnectionId='66' x:Name="videreTilMedarIkon" FontFamily="Segoe MDL2 Assets" Text="&#xEBE7;" Margin="0,4,0,0" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="20" Foreground="{Binding VidereTilMedarbejder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="BookingVidere"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                </StackPanel>
+                <Rectangle HorizontalAlignment="Center" Width="900" Height="1" Margin="0,0,0,439" Fill="#19000000"/>
+                <Rectangle HorizontalAlignment="left" Width="1" Height="500" Margin="185,60,0,0" Fill="#19000000"/>
+                <Rectangle HorizontalAlignment="Center" Width="900" Height="1" Margin="0,559,0,0" Fill="#19000000"/>
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Height="500" Width="185" Margin="0,0,0,-59" Background="#66FFFFFF" Visibility="Visible">
+                    <Grid Height="500" >
+                        <ListView ItemsSource="{Binding ProductCategories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Margin="0 0" />
+                        <Rectangle HorizontalAlignment="Left" Width="2" Height="500" Margin="184,0,0,0" Fill="#1C000000"/>
+                    </Grid>
+                </StackPanel>
+                <Grid x:ConnectionId='63' x:Name="Products" Width="715" Height="500" Margin="185,0,0,-59" Padding="25 15"  Background="#66FFFFFF">
+                    <TextBlock Text="{Binding Category_Desc, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" FontStyle="Oblique" FontSize="16" />
+                    <ScrollViewer x:ConnectionId='64' x:Name="ProductContent1" VerticalAlignment="Top" HorizontalAlignment="Center" HorizontalScrollMode="Disabled" VerticalScrollMode="Enabled" Margin="0,40,0,0">
+                        <ItemsControl ItemsSource="{Binding GridCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <Grid x:ConnectionId='22' x:Name="VælgMedarbejder" Visibility="{Binding EmployeeViewVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="900" Height="560" Background="#D8FFFFFF" Margin="0,0,0,100" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="60" Background="White" Padding="9 0">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEC52;" Margin="0,4,0,0" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="20" Foreground="#FFFF3636" TextAlignment="Right">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingTilbage"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock Text="VÆLG SERVICE" HorizontalAlignment="Center" VerticalAlignment="Center" Width="115" FontWeight="SemiBold" FontSize="16" Foreground="#FFFF3636" TextAlignment="Center">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingTilbage"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock Text="VÆLG MEDARBEJDER" Width="485" HorizontalAlignment="Center" Padding="110,0,2,0" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="24" Foreground="#FF333333" TextAlignment="Center" FontFamily="Segoe UI"/>
+                    <TextBlock x:ConnectionId='62' x:Name="videreTilTidT" Text="NÆSTE SKRIDT: VÆLG TIDSPUNKT" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" FontWeight="SemiBold" FontSize="16" Foreground="LightGray" TextAlignment="Center"/>
+                </StackPanel>
+                <Rectangle HorizontalAlignment="Center" Width="900" Height="1" Margin="0,0,0,439" Fill="#2F000000"/>
+                <ItemsControl Margin="0,60,0,0" Padding="100 40" ItemsSource="{Binding EmployeeCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <StackPanel Margin="0,60,0,0" Padding="100 40" Visibility="Collapsed">
+                    <StackPanel x:ConnectionId='60' AccessKey="1" x:Name="Medarbejder" Padding="10 10" Background="White" Orientation="Horizontal" Margin="0,0,0,15">
+                        <Image Source="Assets/defaultPic.jpg" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <StackPanel Width="530" Padding="10,0,0,0">
+                            <TextBlock Text="Beneg Lysgaard" FontWeight="SemiBold" Foreground="DodgerBlue" FontSize="17" Margin="0,-7,0,0"/>
+                            <TextBlock Text="Professionel Body Piercer" FontStyle="Oblique" Margin="0,0,0,10"/>
+                            <TextBlock Text="Udd. Professionel Body Piercet siden 2010 startet i lærer som body piercer i 2008. - 2010." TextWrapping="Wrap" Width="400" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <Rectangle x:ConnectionId='61' x:Name="VidereTilTidspunktBackground" Width="100" Fill="#CC448AFF" Height="30" VerticalAlignment="Top" />
+                        <TextBlock Text="VÆLG" Margin="-100,0,0,59" Padding="0,4,0,0" Height="30" Width="100" TextAlignment="Center" Foreground="White">
+                            <Interactivity:Interaction.Behaviors>
+                                <Core:EventTriggerBehavior EventName="Tapped">
+                                    <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingVidere"/>
+                                </Core:EventTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </TextBlock>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid x:ConnectionId='23' x:Name="VælgTidspunkt" Visibility="{Binding DateAndTimeViewVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="900" Height="560" Background="#D8FFFFFF" Margin="0,0,0,100" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="60" Background="White" Padding="9 0">
+                    <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEC52;" Margin="0,4,0,0" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="20" Foreground="#FFFF3636" TextAlignment="Right">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingTilbage"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock Text="VÆLG MEDARBEJDER" HorizontalAlignment="Center" VerticalAlignment="Center" Width="165" FontWeight="SemiBold" FontSize="16" Foreground="#FFFF3636" TextAlignment="Center">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingTilbage"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock Text="VÆLG TIDSPUNKT" Width="440" HorizontalAlignment="Center" Padding="55,0,2,0" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="24" Foreground="#FF333333" TextAlignment="Center" FontFamily="Segoe UI"/>
+                    <TextBlock x:ConnectionId='58' x:Name="videreTilKontaktT" Text="ANGIV KONTAKTOPLYSNIGER" HorizontalAlignment="Center" VerticalAlignment="Center" Width="220" FontWeight="SemiBold" FontSize="16" Foreground="{Binding VidereTilKontakt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingVidere"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock x:ConnectionId='59' x:Name="videreTilKontaktIkon" FontFamily="Segoe MDL2 Assets" Text="&#xEBE7;" Margin="0,4,0,0" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="20" Foreground="{Binding VidereTilKontakt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingVidere"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock x:ConnectionId='55' x:Name="valgteMedarbejderTitle" Text="Vælg din ønskede dato herunder, og de ledige tider vil blive vist til højre" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80,70,0,0"/>
+                <ItemsControl VerticalAlignment="Top" Margin="80,100,0,0" Width="296" HorizontalAlignment="Left" ItemsSource="{Binding DatePickers, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock x:ConnectionId='56' x:Name="IngenLedigeTider" Visibility="{Binding NoAvailableTimes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Text="{Binding TidErrorMessage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="SemiBold" Foreground="Red" Width="420" TextAlignment="Center" Margin="350,105,0,0"/>
+                <ItemsControl ItemsSource="{Binding AvailableTimeCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="350,100,0,0" Padding="0 0" VerticalAlignment="Top" Width="420" Height="430"/>
+                <TextBlock x:ConnectionId='57' x:Name="valgteTidTekst" FontWeight="SemiBold" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36" Foreground="#FF333333" />
+            </Grid>
+            <Grid x:ConnectionId='24' x:Name="AngivKontaktOplysninger" Visibility="{Binding ContactViewVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="900" Height="560" Background="#D8FFFFFF" Margin="0,0,0,100" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="60" Background="White" Padding="9 0">
+                    <TextBlock x:ConnectionId='53' x:Name="tilbageTilTidIkon" FontFamily="Segoe MDL2 Assets" Text="&#xEC52;" Margin="0,4,0,0" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="20" Foreground="#FFFF3636" TextAlignment="Right">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingTilbage"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock x:ConnectionId='54' x:Name="tilbageTilTidT" Text="VÆLG TIDSPUNKT" HorizontalAlignment="Center" VerticalAlignment="Center" Width="140" FontWeight="SemiBold" FontSize="16" Foreground="#FFFF3636" TextAlignment="Center">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingTilbage"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock Text="ANGIV KONTAKTOPLYSNINGER" Width="544" HorizontalAlignment="Center" Padding="20,0,2,0" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="24" Foreground="#FF333333" TextAlignment="Center" FontFamily="Segoe UI"/>
+                    <TextBlock Visibility="{Binding ContactInfoViewVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="BEKRÆFT BOOKING" HorizontalAlignment="Center" VerticalAlignment="Center" Width="146" FontWeight="SemiBold" FontSize="16" Foreground="{Binding VidereTilBekræft, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingVidere"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock  Visibility="{Binding ContactInfoViewVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="Segoe MDL2 Assets" Text="&#xEBE7;" Margin="0,4,0,0" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="20" Foreground="{Binding VidereTilBekræft, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingVidere"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                </StackPanel>
+                <Grid x:ConnectionId='41' x:Name="AngivTlfGrid" Visibility="{Binding TlfViewVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBlock TextWrapping="Wrap" Width="450" TextAlignment="Center" Text="Indtast venligst mobilnummer. Hvis du tidligere har brugt systemet, så brug samme nummer som sidst." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,200" Foreground="#FF333333"/>
+                    <Border VerticalAlignment="Center" HorizontalAlignment="Center" Width="302" Height="34" BorderThickness="1" BorderBrush="#FFCDCDCD"/>
+                    <TextBox x:ConnectionId='52' Text="{Binding Customer_Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" x:Name="KontaktTlf" PlaceholderText="Mobil" Width="300" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="#CCFFFFFF" Background="#CCFFFFFF">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="TextChanged">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="ValidatePhoneNumber"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
+                    <Rectangle Width="100" Height="32" Margin="0,80,0,0" Fill="{Binding VidereTilKontaktInfo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="BEKRÆFT" TextAlignment="Center" Padding="0,5,0,0" Foreground="White" Width="100" Height="32" Margin="0,80,0,0">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingVidere"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                </Grid>
+                <Grid x:ConnectionId='42' x:Name="AngivKontakOplGrid" Visibility="{Binding ContactInfoViewVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    <TextBlock TextWrapping="Wrap" Width="550" TextAlignment="Center" Text="Indtast dine informationer herunder. Bruger du et telefonnr, som allerede er i systemet, vil info blive udfyldt automatisk. Du kan ændre informationen efter behov, også selvom de er blevet autogeneret" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,95,0,0" Foreground="#FF333333"/>
+                    <StackPanel x:ConnectionId='43' x:Name="AngivKontakt" Visibility="Visible" VerticalAlignment="Center" Margin="-50,100,0,0">
+                        <StackPanel Orientation="Horizontal" Padding="230 0" Margin="0,0,0,8">
+                            <TextBlock Text="Navn" Width="100" TextAlignment="Right" Padding="0,5,5,0" FontWeight="SemiBold" Foreground="#FF333333" />
+                            <TextBlock Text="*" Margin="0,0,20,0" Padding="0,5,0,0" FontWeight="SemiBold" Foreground="DodgerBlue"/>
+                            <TextBox x:ConnectionId='51' Text="{Binding Customer_Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" x:Name="KontaktNavn" PlaceholderText="Navn" Width="380" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="#0C000000" Background="#CCFFFFFF">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="TextChanged">
+                                        <Core:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="ValidateContactInfo"/>
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Padding="230 0" Margin="0,0,0,8">
+                            <TextBlock Text="Adresse" Width="100" TextAlignment="Right" Padding="0,5,5,0" FontWeight="SemiBold" Foreground="#FF333333" />
+                            <TextBlock Text="*" Margin="0,0,20,0" Padding="0,5,0,0" FontWeight="SemiBold" Foreground="DodgerBlue"/>
+                            <TextBox x:ConnectionId='50' Text="{Binding Customer_Adress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" x:Name="KontaktAdresse" PlaceholderText="Adresse" Width="380" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="#0C000000" Background="#CCFFFFFF">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="TextChanged">
+                                        <Core:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="ValidateContactInfo"/>
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Padding="230 0" Margin="0,0,0,8">
+                            <TextBlock Text="Postnr / by" Width="100" TextAlignment="Right" Padding="0,5,5,0" FontWeight="SemiBold" Foreground="#FF333333" />
+                            <TextBlock Text="*" Margin="0,0,20,0" Padding="0,5,0,0" FontWeight="SemiBold" Foreground="DodgerBlue"/>
+                            <TextBox x:ConnectionId='48' Text="{Binding Customer_Zipcode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" x:Name="KontaktPostby" PlaceholderText="Postnr" Width="110" VerticalAlignment="Center" Margin="0,0,10,0" BorderBrush="#0C000000" Background="#CCFFFFFF">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="TextChanged">
+                                        <Core:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="ValidateContactInfo"/>
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox x:ConnectionId='49' Text="{Binding Customer_City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" x:Name="KontaktBy" PlaceholderText="By" Width="260" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="#0C000000" Background="#CCFFFFFF">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="TextChanged">
+                                        <Core:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="ValidateContactInfo"/>
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Padding="230 0" Margin="0,0,0,8">
+                            <TextBlock Text="Email" Width="100" TextAlignment="Right" Padding="0,5,5,0" FontWeight="SemiBold" Foreground="#FF333333" />
+                            <TextBlock Text="*" Margin="0,0,20,0" Padding="0,5,0,0" FontWeight="SemiBold" Foreground="DodgerBlue"/>
+                            <TextBox x:ConnectionId='47' Text="{Binding Customer_Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" x:Name="KontaktEmail" PlaceholderText="Email" Width="380" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="#0C000000" Background="#CCFFFFFF">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="TextChanged">
+                                        <Core:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="ValidateContactInfo"/>
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Padding="230 0" Margin="0,0,0,8">
+                            <TextBlock Text="Mobil" Width="100" TextAlignment="Right" Padding="0,5,5,0" FontWeight="SemiBold" Foreground="#FF333333" />
+                            <TextBlock Text="*" Margin="0,0,20,0" Padding="0,5,0,0" FontWeight="SemiBold" Foreground="DodgerBlue"/>
+                            <StackPanel Orientation="Horizontal" Height="32">
+                                <Grid Width="380" Background="#FFEAEAEA">
+                                    <TextBlock x:ConnectionId='46' x:Name="GivneMobilNr" Text="{Binding Customer_Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Padding="10,4,0,0"/>
+                                    <HyperlinkButton HorizontalAlignment="Right" Content="SKIFT MOBILNUMMER" Padding="0,0,10,4" Foreground="Black" FontSize="11">
+                                        <Interactivity:Interaction.Behaviors>
+                                            <Core:EventTriggerBehavior EventName="Tapped">
+                                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="ChangePhoneNumber"/>
+                                            </Core:EventTriggerBehavior>
+                                        </Interactivity:Interaction.Behaviors>
+                                    </HyperlinkButton>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Padding="230 0" Margin="0,0,0,8">
+                            <TextBlock Text="Køn" Width="100" TextAlignment="Right" Padding="0,5,5,0" FontWeight="SemiBold" Foreground="#FF333333" />
+                            <TextBlock Text="*" Margin="0,0,20,0" Padding="0,5,0,0" FontWeight="SemiBold" Foreground="DodgerBlue"/>
+                            <TextBox x:ConnectionId='45' Text="{Binding Customer_Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" x:Name="KontaktKøn" PlaceholderText="Køn" Width="148" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="#0C000000" Background="#CCFFFFFF">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="TextChanged">
+                                        <Core:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="ValidateContactInfo"/>
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Padding="230 0" Margin="0,0,0,8">
+                            <TextBlock Text="Fødselsdag" Width="100" TextAlignment="Right" Padding="0,5,5,0" FontWeight="SemiBold" Foreground="#FF333333" />
+                            <TextBlock Text="*" Margin="0,0,20,0" Padding="0,5,0,0" FontWeight="SemiBold" Foreground="DodgerBlue"/>
+                            <ItemsControl ItemsSource="{Binding BirthDayDatePickerOC, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Padding="230 0" Margin="0,0,0,8">
+                            <TextBlock Text="Kodeord" Width="100" TextAlignment="Right" Padding="0,5,5,0" FontWeight="SemiBold" Foreground="#FF333333" />
+                            <TextBlock Text="*" Margin="0,0,20,0" Padding="0,5,0,0" FontWeight="SemiBold" Foreground="DodgerBlue"/>
+                            <PasswordBox x:ConnectionId='44' Password="{Binding Customer_Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" x:Name="KontaktPassword" PlaceholderText="Kodeord" Width="380" VerticalAlignment="Center" Margin="0,0,0,0" BorderBrush="#0C000000" Background="#CCFFFFFF">
+                                <Interactivity:Interaction.Behaviors>
+                                    <Core:EventTriggerBehavior EventName="TextChanged">
+                                        <Core:CallMethodAction TargetObject="{Binding Mode=OneWay}" MethodName="ValidateContactInfo"/>
+                                    </Core:EventTriggerBehavior>
+                                </Interactivity:Interaction.Behaviors>
+                            </PasswordBox>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Grid x:ConnectionId='25' x:Name="BekræftBooking" Visibility="{Binding ConfirmViewVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="900" Height="560" Background="#D8FFFFFF" Margin="0,0,0,100" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="60" Background="White" Padding="9 0">
+                    <TextBlock x:ConnectionId='39' x:Name="tilbageTilKontaktIkon" FontFamily="Segoe MDL2 Assets" Text="&#xEC52;" Margin="0,4,0,0" Width="25" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="20" Foreground="#FFFF3636" TextAlignment="Right">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingTilbage"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock x:ConnectionId='40' x:Name="tilbageTilKontaktT" Text="ANGIV KONTAKTOPLYSNINGER" HorizontalAlignment="Center" VerticalAlignment="Center" Width="230" FontWeight="SemiBold" FontSize="16" Foreground="#FFFF3636" TextAlignment="Center">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BookingTilbage"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                    <TextBlock Text="BEKRÆFT BOOKING" Width="625" HorizontalAlignment="Center" Padding="0,0,255,2" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="24" Foreground="#FF333333" TextAlignment="Center" FontFamily="Segoe UI"/>
+                </StackPanel>
+                <Grid x:ConnectionId='35' x:Name="BekræftkodeGrid" Visibility="Visible">
+                    <TextBlock TextWrapping="Wrap" Width="450" TextAlignment="Center" Text="Indtast venligst den bekræftelseskode, som er sendt til telefonnummeret: " HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,300" Foreground="#A5333333"/>
+                    <TextBlock TextWrapping="Wrap" Width="550" FontWeight="SemiBold" TextAlignment="Center" Text="OBS: Bekræftelseskode bliver ikke sendt (desværre), så indtast venligst: 1234" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,200" Foreground="#FFB23131"/>
+                    <TextBlock x:ConnectionId='36' FontWeight="SemiBold" x:Name="AngiveTlfNr" TextWrapping="Wrap" TextAlignment="Left" Text="{Binding Customer_Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="200,20,0,300" Foreground="#FF333333"/>
+                    <Border Margin="0,0,0,50" VerticalAlignment="Center" HorizontalAlignment="Center" Width="382" Height="34" BorderThickness="1" BorderBrush="#FFCDCDCD"/>
+                    <TextBox Text="{Binding ValidationCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,50" HorizontalAlignment="Center" PlaceholderText="Bekræftelseskode" Width="380" VerticalAlignment="Center" BorderBrush="#CCFFFFFF" Background="#CCFFFFFF"/>
+                    <Rectangle x:ConnectionId='37' x:Name="BekræftBookingBackground" Width="100" Height="32" Margin="0,50,0,0" Fill="#FFBDBDBD"/>
+                    <TextBlock x:ConnectionId='38' x:Name="BekræftBookingTekst" Text="BEKRÆFT" TextAlignment="Center" Padding="0,5,0,0" Foreground="White" Width="100" Height="32" Margin="0,50,0,0">
+                        <Interactivity:Interaction.Behaviors>
+                            <Core:EventTriggerBehavior EventName="Tapped">
+                                <Core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="BekræftBooking"/>
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                </Grid>
+            </Grid>
+            <Grid Height="60" Visibility="{Binding BookingProcessViewVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Width="900" VerticalAlignment="Center" Margin="0,520,0,0" Background="White" Padding="57,15,57,15">
+                <StackPanel x:ConnectionId='26' Orientation="Horizontal" x:Name="BookingProcess" HorizontalAlignment="Left" MaxWidth="686">
+                    <TextBlock x:ConnectionId='28' x:Name="BookingProcessService" Text="{Binding ChosenProducts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxWidth="220" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" FontWeight="SemiBold"/>
+                    <TextBlock x:ConnectionId='29' x:Name="BookingProcessArrow1" Visibility="{Binding Arrow1Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="Segoe MDL2 Assets" Text="&#xEBE7;" Margin="10,3,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    <TextBlock x:ConnectionId='30' x:Name="BookingProcessMedarbejder" Text="{Binding ChosenEmployee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" FontWeight="SemiBold"/>
+                    <TextBlock x:ConnectionId='31' x:Name="BookingProcessArrow2" Visibility="{Binding Arrow2Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="Segoe MDL2 Assets" Text="&#xEBE7;" Margin="10,3,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    <TextBlock x:ConnectionId='32' x:Name="BookingProcessTidspunkt" Text="{Binding ChosenTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" FontWeight="SemiBold"/>
+                    <TextBlock x:ConnectionId='33' x:Name="BookingProcessArrow3" Visibility="{Binding Arrow3Visibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontFamily="Segoe MDL2 Assets" Text="&#xEBE7;" Margin="10,3,10,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    <TextBlock x:ConnectionId='34' x:Name="BookingProcessKontakt"  Text="{Binding GetUser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" FontWeight="SemiBold"/>
+                </StackPanel>
+                <TextBlock x:ConnectionId='27' x:Name="BookingTotalPris" Text="{Binding TotalPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,0" TextAlignment="Right" FontWeight="SemiBold"/>
+            </Grid>
+            <!--<ProgressRing IsActive="{Binding ProgressRingActive, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="100" Width="100"/>-->
+        </Grid>
+        <Grid Visibility="{Binding KviteringViewVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="900" Height="620" Background="#D8FFFFFF" Margin="0,0,0,45" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="60" Background="White" Padding="0 0">
+                <TextBlock Text="KVITTERING PÅ BOOKING" Width="900" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="24" Foreground="#FF333333" TextAlignment="Center" FontFamily="Segoe UI"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock TextAlignment="Center" Text="Herunder finder du information om din booking" Padding="0 20"/>
+                <StackPanel Orientation="Horizontal" Padding="0 5">
+                    <TextBlock Width="450" Text="Bookingnummer:" TextAlignment="Right" Padding="0,0,5,0" FontWeight="SemiBold" Foreground="#FF333333"/>
+                    <TextBlock Width="450" Text="{Binding Booking_id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" Padding="5,0,0,0"  Foreground="#FF333333"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Padding="0 5">
+                    <TextBlock Width="450" Text="Dato:" TextAlignment="Right" Padding="0,0,5,0" FontWeight="SemiBold" Foreground="#FF333333"/>
+                    <TextBlock Width="450" Text="{Binding Booking_Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" Padding="5,0,0,0"  Foreground="#FF333333"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Padding="0 5">
+                    <TextBlock Width="450" Text="Pris:" TextAlignment="Right" Padding="0,0,5,0" FontWeight="SemiBold" Foreground="#FF333333"/>
+                    <TextBlock Width="450" Text="{Binding Booking_TotalPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" Padding="5,0,0,0"  Foreground="#FF333333"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Padding="0 5">
+                    <TextBlock Width="450" Text="Produkt:" TextAlignment="Right" Padding="0,0,5,0" FontWeight="SemiBold" Foreground="#FF333333"/>
+                    <TextBlock Width="450" Text="{Binding Booking_Product, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" Padding="2,0,0,0"  Foreground="#FF333333"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Padding="0 5">
+                    <TextBlock Width="450" Text="Medarbejder:" TextAlignment="Right" Padding="0,0,5,0" FontWeight="SemiBold" Foreground="#FF333333"/>
+                    <TextBlock Width="450" Text="{Binding Booking_Employee, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" Padding="5,0,0,0"  Foreground="#FF333333"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Padding="0 5">
+                    <TextBlock Width="450" Text="Kunde:" TextAlignment="Right" Padding="0,0,5,0" FontWeight="SemiBold" Foreground="#FF333333"/>
+                    <TextBlock Width="450" Text="{Binding Booking_Customer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" Padding="5,0,0,0"  Foreground="#FF333333"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Padding="0 5">
+                    <TextBlock Width="450" Text="Email:" TextAlignment="Right" Padding="0,0,5,0" FontWeight="SemiBold" Foreground="#FF333333"/>
+                    <TextBlock Width="450" Text="{Binding Booking_Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Left" Padding="5,0,0,0"  Foreground="#FF333333"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <Rectangle x:ConnectionId='5' x:Name="InfoPopupBackground" Height="40" Width="228" VerticalAlignment="Bottom" HorizontalAlignment="Right" Fill="#99FFFFFF" Margin="0,0,40,40"                                                                  />
+        <TextBlock x:ConnectionId='6' Text="INFORMATION OM OS" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,40" Height="40" Width="228" Padding="0,9,0,9" TextAlignment="Center" Foreground="Black"                                                                                            />
+        <Popup x:ConnectionId='7' x:Name="InfoPopup" IsOpen="False" Width="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,268,645">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Bottom"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollMode="Enabled" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,20" Width="228" Height="560" Background="#E5FFFFFF" Padding="12 12" FontFamily="Segoe UI">
+                <StackPanel>
+                    <TextBlock Text="ÅBNINSTIDER" FontWeight="SemiBold" Margin="0,0,0,9" FontSize="18"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Mandag" Width="80"/>
+                        <TextBlock Text="Lukket"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Tirsdag" Width="80"/>
+                        <TextBlock Text="16:00 - 20:00"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Onsdag" Width="80"/>
+                        <TextBlock Text="17:30 - 20.00"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Torsdag" Width="80"/>
+                        <TextBlock Text="17.00 - 20:00"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Fredag" Width="80"/>
+                        <TextBlock Text="Lukket"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Lørdag" Width="80"/>
+                        <TextBlock Text="Lukket"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Søndag" Width="80"/>
+                        <TextBlock Text="Lukket"/>
+                    </StackPanel>
+                    <TextBlock Text="ALDERSGRÆNSE" FontWeight="SemiBold" Margin="0,22,0,9" FontSize="18"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="En person under 15 år skal være i følgeskab med forældre eller værge for at blive piercet"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="En person der er 15 år eller ældre kan egenhændigt blive piercet, undtagen intim-piercinger"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="En person over 18 år kan egenhændigt få lavet alle piercinger"/>
+                    <TextBlock Text="MATERIALER" FontWeight="SemiBold" Margin="0,22,0,9" FontSize="18"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="Vi udføre piercinger med disse smykke materialer"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="Titanium - 6Al-4V-Eli F-136"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="Niobium"/>
+                    <TextBlock Text="PRISER" FontWeight="SemiBold" Margin="0,22,0,9" FontSize="18"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="Bemærk:"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="Alle priser excl. smykke (med mindre andet er beskrevet)"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="priser på smykker starter fra 100,- kr"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="**Det er ikke muligt at benytte eget smykkestart."/>
+                    <TextBlock Text="REBELLIC" FontWeight="SemiBold" Margin="0,22,0,9" FontSize="18" FontFamily="Segoe UI"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEC06;" Margin="0,2,3,0"/>
+                        <StackPanel>
+                            <TextBlock Text="Snogebækvej 59"/>
+                            <TextBlock Text="4600 Ølby, Køge"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE715;" Margin="0,4,3,0"/>
+                        <StackPanel>
+                            <TextBlock Text="contact@rebellic.me"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  Margin="0,3,0,0">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE717;" Margin="0,3,3,0"/>
+                        <StackPanel>
+                            <TextBlock Text="12345678"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Popup>
+
+        <Grid x:ConnectionId='8' Visibility="Collapsed" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,40,40,0"                                                                                              >
+            <Grid x:ConnectionId='16' x:Name="profileOpenImg" HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Margin="0,00,00,0"                                                                                                  >
+                <Grid.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="Assets/defaultPic.jpg"/>
+                </Grid.Background>
+            </Grid>
+            <Grid x:ConnectionId='17' x:Name="profileOpen" HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="169" Margin="0,0,59,0"                                Background="#EDFFFFFF"                                                                    />
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:ConnectionId='18' x:Name="ProfileArrowDown" FontFamily="Segoe MDL2 Assets" Text="&#xE70D;" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,3,0,0" FontWeight="SemiBold" Foreground="#FF333333"                                                                                                  />
+                <TextBlock x:ConnectionId='19' x:Name="ProfileArrowUp" Visibility="Collapsed" FontFamily="Segoe MDL2 Assets" Text="&#xE70E;" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,3,0,0" FontWeight="SemiBold" Foreground="#FF333333"                                                                                                  />
+                
+                <TextBlock x:ConnectionId='20' Text="{Binding Path=Lh.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Margin="5,0,0,0" FontWeight="SemiBold" Foreground="#FF333333" Width="120"                                                                                                  />
+            </StackPanel>
+        </Grid>
+        <Popup x:ConnectionId='9' x:Name="myPopup" IsOpen="False" Width="0" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,104,268,0">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Top"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <Grid Background="#FEFFFFFF">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Width="228">
+                    <StackPanel Orientation="Horizontal" Padding="10 10">
+                        <TextBlock x:ConnectionId='14' Margin="0,2,5,0" x:Name="setting1Ikon" AccessKey="0" FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" Foreground="#FF333333" TextAlignment="Left"/>
+                        <TextBlock x:ConnectionId='15' x:Name="setting1" AccessKey="0" Text="Gå til profil" Foreground="#FF333333" TextAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Padding="10 10">
+                        <TextBlock x:ConnectionId='12' Margin="0,2,5,0" x:Name="setting2Ikon" AccessKey="1" FontFamily="Segoe MDL2 Assets" Text="&#xE713;" Foreground="#FF333333" TextAlignment="Left"/>
+                        <TextBlock x:ConnectionId='13' x:Name="setting2" AccessKey="1" Text="Se bookinger" Foreground="#FF333333" TextAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Padding="10 10">
+                        <TextBlock x:ConnectionId='10' Margin="0,2,5,0" x:Name="setting3Ikon" AccessKey="2" FontFamily="Segoe MDL2 Assets" Text="&#xE8A7;" Foreground="#FF333333" TextAlignment="Left" RenderTransformOrigin="0.5,0.5">
+                            <TextBlock.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="-1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        <TextBlock x:ConnectionId='11' x:Name="setting3" AccessKey="2" Text="Log ud" Foreground="#FF333333" TextAlignment="Left"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Popup>
+    </Grid>
+</Page>
+

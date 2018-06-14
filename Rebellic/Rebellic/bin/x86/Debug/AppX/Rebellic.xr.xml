@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Roots >
+  <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="Lh" />
+    <RootPropertyPathName Name="Name" />
+    <RootPropertyPathName Name="AllProductCategories" />
+    <RootPropertyPathName Name="AllProducts" />
+    <RootPropertyPathName Name="AllEmployees" />
+    <RootPropertyPathName Name="AllCustomers" />
+    <RootPropertyPathName Name="AllBookings" />
+    <RootPropertyPathName Name="MenuProfileVisibilty" />
+    <RootPropertyPathName Name="MenuLogoutVisibility" />
+    <RootPropertyPathName Name="MenuLoginVisibilty" />
+    <RootPropertyPathName Name="ProfileUserGrid" />
+    <RootPropertyPathName Name="MenuCreateUserGrid" />
+    <RootPropertyPathName Name="Ch" />
+    <RootPropertyPathName Name="Customer_Password" />
+    <RootPropertyPathName Name="Customer_Gender" />
+    <RootPropertyPathName Name="Customer_Birthday" />
+    <RootPropertyPathName Name="Customer_Phone" />
+    <RootPropertyPathName Name="Customer_City" />
+    <RootPropertyPathName Name="Customer_Zipcode" />
+    <RootPropertyPathName Name="Customer_Adress" />
+    <RootPropertyPathName Name="Customer_Name" />
+    <RootPropertyPathName Name="LoginUserGrid" />
+    <RootPropertyPathName Name="Password" />
+    <RootPropertyPathName Name="Email" />
+    <RootPropertyPathName Name="KviteringViewVisibility" />
+    <RootPropertyPathName Name="Booking_Email" />
+    <RootPropertyPathName Name="Booking_Customer" />
+    <RootPropertyPathName Name="Booking_Employee" />
+    <RootPropertyPathName Name="Booking_Product" />
+    <RootPropertyPathName Name="Booking_TotalPrice" />
+    <RootPropertyPathName Name="Booking_Date" />
+    <RootPropertyPathName Name="Booking_id" />
+    <RootPropertyPathName Name="BookingProcessViewVisibilty" />
+    <RootPropertyPathName Name="TotalPrice" />
+    <RootPropertyPathName Name="GetUser" />
+    <RootPropertyPathName Name="Arrow3Visibility" />
+    <RootPropertyPathName Name="ChosenTime" />
+    <RootPropertyPathName Name="Arrow2Visibility" />
+    <RootPropertyPathName Name="ChosenEmployee" />
+    <RootPropertyPathName Name="Arrow1Visibility" />
+    <RootPropertyPathName Name="ChosenProducts" />
+    <RootPropertyPathName Name="ConfirmViewVisibilty" />
+    <RootPropertyPathName Name="ValidationCode" />
+    <RootPropertyPathName Name="ContactViewVisibilty" />
+    <RootPropertyPathName Name="ContactInfoViewVisibilty" />
+    <RootPropertyPathName Name="BirthDayDatePickerOC" />
+    <RootPropertyPathName Name="Customer_Email" />
+    <RootPropertyPathName Name="TlfViewVisibilty" />
+    <RootPropertyPathName Name="VidereTilKontaktInfo" />
+    <RootPropertyPathName Name="VidereTilBekræft" />
+    <RootPropertyPathName Name="DateAndTimeViewVisibilty" />
+    <RootPropertyPathName Name="AvailableTimeCollection" />
+    <RootPropertyPathName Name="NoAvailableTimes" />
+    <RootPropertyPathName Name="TidErrorMessage" />
+    <RootPropertyPathName Name="DatePickers" />
+    <RootPropertyPathName Name="VidereTilKontakt" />
+    <RootPropertyPathName Name="EmployeeViewVisibilty" />
+    <RootPropertyPathName Name="EmployeeCollection" />
+    <RootPropertyPathName Name="ProductViewVisibility" />
+    <RootPropertyPathName Name="GridCollection" />
+    <RootPropertyPathName Name="Category_Desc" />
+    <RootPropertyPathName Name="ProductCategories" />
+    <RootPropertyPathName Name="VidereTilMedarbejder" />
+    <RootPropertyPathName Name="ErrorMessageVisibility" />
+    <RootPropertyPathName Name="ErrorMessage" />
+  </Roots.PropertyPathNames>
+  <Roots.RootTypes>
+    <RootType FullName="Windows.UI.Xaml.Application">
+      <RootProperty Name="RequestedTheme" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Page">
+      <RootProperty Name="DataContext" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Rebellic.BookingHandler" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
+      <RootProperty Name="Background" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Padding" />
+      <RootEvent Name="PointerEntered" />
+      <RootEvent Name="PointerExited" />
+      <RootEvent Name="Tapped" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.ImageBrush">
+      <RootProperty Name="ImageSource" />
+      <RootProperty Name="Stretch" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Fill" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Visibility" />
+      <RootEvent Name="Tapped" />
+      <RootEvent Name="PointerEntered" />
+      <RootEvent Name="PointerExited" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="FontWeight" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="TextAlignment" />
+      <RootProperty Name="AccessKey" />
+      <RootProperty Name="RenderTransformOrigin" />
+      <RootProperty Name="RenderTransform" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="TextTrimming" />
+      <RootProperty Name="TextWrapping" />
+      <RootProperty Name="FontStyle" />
+      <RootProperty Name="MaxWidth" />
+      <RootEvent Name="Tapped" />
+      <RootEvent Name="PointerEntered" />
+      <RootEvent Name="PointerExited" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Primitives.Popup">
+      <RootProperty Name="IsOpen" />
+      <RootProperty Name="ChildTransitions" />
+      <RootProperty Name="Child" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.TransitionCollection" />
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.PaneThemeTransition">
+      <RootProperty Name="Edge" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="Orientation" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="MaxWidth" />
+      <RootProperty Name="AccessKey" />
+      <RootEvent Name="PointerEntered" />
+      <RootEvent Name="PointerExited" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.TransformGroup">
+      <RootProperty Name="Children" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.ScaleTransform">
+      <RootProperty Name="ScaleX" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.SkewTransform" />
+    <RootType FullName="Windows.UI.Xaml.Media.RotateTransform" />
+    <RootType FullName="Windows.UI.Xaml.Media.TranslateTransform" />
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Mode" />
+      <RootProperty Name="UpdateSourceTrigger" />
+      <RootProperty Name="Path" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">
+      <RootProperty Name="HorizontalScrollMode" />
+      <RootProperty Name="VerticalScrollMode" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="FontFamily" />
+      <RootProperty Name="Content" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
+    <RootType FullName="Rebellic.CustProfile" />
+    <RootType FullName="Rebellic.LoginHandler" />
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.DatePicker">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Date" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Password" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactivity.Interaction">
+      <RootMethod Name="GetBehaviors" />
+      <RootMethod Name="SetBehaviors" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactions.Core.EventTriggerBehavior">
+      <RootProperty Name="EventName" />
+      <RootProperty Name="Actions" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Interactions.Core.CallMethodAction">
+      <RootProperty Name="TargetObject" />
+      <RootProperty Name="MethodName" />
+    </RootType>
+    <RootType FullName="Rebellic.LogInd" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Border">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="BorderBrush" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ItemsControl">
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.HyperlinkButton">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="Padding" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="FontSize" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Image">
+      <RootProperty Name="Source" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
+    <RootType FullName="Rebellic.MainPage" />
+  </Roots.RootTypes>
+</Roots>

@@ -1,0 +1,217 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Rebellic"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Handler="using:Rebellic.Handler"
+    x:Class="Rebellic.LogInd"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <local:LoginHandler/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/wp2.jpg"/>
+        </Grid.Background>
+        <Rectangle Width="1920" Height="1080" Fill="#26000000"/>
+
+        <Rectangle x:ConnectionId='2' x:Name="btnShowPaneBack" Width="36" Height="30" Margin="35,39,0,0"                              VerticalAlignment="Top" HorizontalAlignment="Left" Fill="#33000000" Visibility="Collapsed"/>
+        <TextBlock x:ConnectionId='3' x:Name="btnShowPane" FontSize="26" FontFamily="Segoe MDL2 Assets" Text="&#xE700;" Margin="40,40,0,0"                              Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Left"                                                                                          />
+        <Popup x:ConnectionId='4' x:Name="MenuPopup" IsOpen="False">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Left"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <StackPanel x:ConnectionId='30' x:Name="MainMenu" Padding="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="1080" Width="260" Margin="0,0,0,0" Background="White" >
+                <TextBlock x:ConnectionId='31' x:Name="btnClosePane" FontSize="22" FontFamily="Segoe MDL2 Assets" Text="&#xE8BB;" Margin="0,40,20,0"                              Foreground="#FF9B0000" VerticalAlignment="Top" HorizontalAlignment="Right"                                                                    />
+                <Grid Margin="0,0,0,0">
+                    <Rectangle x:ConnectionId='32' x:Name="hoverEffect1" VerticalAlignment="Top" HorizontalAlignment="Left" Height="50" Width="259" Fill="#0C000000" Margin="0,70,0,0" Visibility="Collapsed"/>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="0,20,0,0">
+                        <TextBlock x:ConnectionId='34' x:Name="NavMainPage" AccessKey="0" Text="BOOK EN TID" Width="260" HorizontalAlignment="Left" Height="50" TextAlignment="Center" Padding="17 15" Foreground="#FF2196F3"                                                                                                          />
+                        <TextBlock x:ConnectionId='35' x:Name="NavLogInd" FontWeight="SemiBold" AccessKey="1" Visibility="{Binding MenuLoginVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="LOG IND/OPRET BRUGER" Width="260" HorizontalAlignment="Left" Height="50" TextAlignment="Center" Padding="17 15" Foreground="#FF2196F3"                                                                                                          />
+                        <TextBlock x:ConnectionId='36' x:Name="NavLogUd" FontWeight="SemiBold" AccessKey="1" Visibility="{Binding MenuLogoutVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="LOG UD" Width="260" HorizontalAlignment="Left" Height="50" TextAlignment="Center" Padding="17 15" Foreground="#FF2196F3"                                                                                                          />
+                        <TextBlock x:ConnectionId='37' x:Name="NavCustProfile" Visibility="{Binding MenuProfileVisibilty, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AccessKey="2" Text="PROFILE" Width="260" HorizontalAlignment="Left" Height="50" TextAlignment="Center" Padding="17 15" Foreground="#FF2196F3"                                                                                                          />
+                    </StackPanel>
+                    <Grid x:ConnectionId='33' x:Name="GridCursor1" Width="5" Height="50" Background="#FF2196F3" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="256,70,0,0"/>
+                </Grid>
+            </StackPanel>
+        </Popup>
+        <!--<SplitView Name="SplitView" DisplayMode="CompactOverlay" IsPaneOpen="False" CompactPaneLength="00" OpenPaneLength="260" FontFamily="Segoe UI">
+            <SplitView.Pane>
+                
+            </SplitView.Pane>
+        </SplitView>-->
+        <Grid x:ConnectionId='5' x:Name="LogIndGrid" Visibility="{Binding LoginUserGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="450" Height="270" Background="#D8FFFFFF" Margin="0,0,0,20" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="60" Background="White" Padding="9 0">
+                <TextBlock Text="LOG IND" Width="310" HorizontalAlignment="Center" Padding="120,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="24" Foreground="#FF333333" TextAlignment="Center" FontFamily="Segoe UI"/>
+                <TextBlock x:ConnectionId='29' x:Name="OpretBruger" Text="OPRET BRUGER" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" Foreground="DodgerBlue" TextAlignment="Center"                                                                                                      />
+            </StackPanel>
+            <StackPanel Margin="0,60,0,0" Padding="0 40">
+                <TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="350" PlaceholderText="Email" Background="#CCFFFFFF" BorderBrush="#CCFFFFFF"/>
+                <PasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="350" Margin="0,12,0,0" PlaceholderText="Password" Background="#CCFFFFFF" BorderBrush="#CCFFFFFF"/>
+            </StackPanel>
+            <Rectangle x:ConnectionId='27' x:Name="LogIndBtnBack" Width="350" Height="35" Margin="0,135,0,0" Fill="#CC448AFF"                                                                                  />
+            <TextBlock x:ConnectionId='28' x:Name="LogIndBtnText" Width="350" Height="20" Margin="0,132,0,0" Text="Log ind" Foreground="#E5FFFFFF" FontWeight="SemiBold" TextAlignment="Center"                                                                                  >
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="Login"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </TextBlock>
+            <Rectangle HorizontalAlignment="Center" Width="450" Height="1" Margin="0,0,0,149" Fill="#2F000000"/>
+        </Grid>
+        <Grid x:ConnectionId='6' x:Name="OpretBrugerGrid" Visibility="{Binding MenuCreateUserGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="450" Height="510" Background="#D8FFFFFF" Margin="0,0,0,20" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="60" Background="White" Padding="9 0">
+                <TextBlock Text="OPRET BRUGER" Width="365" HorizontalAlignment="Center" Padding="65,0,0,0" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="24" Foreground="#FF333333" TextAlignment="Center" FontFamily="Segoe UI"/>
+                <TextBlock x:ConnectionId='26' x:Name="LogIndd" Text="LOG IND" Width="65" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" Foreground="DodgerBlue" TextAlignment="Center"                                                                                                      />
+            </StackPanel>
+            <StackPanel Margin="0,60,0,0" Padding="0 30">
+                <TextBox Width="350" Text="{Binding Ch.Customer_Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PlaceholderText="Navn" Background="#CCFFFFFF" BorderBrush="#CCFFFFFF"/>
+                <TextBox Width="350" Text="{Binding Ch.Customer_Adress, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,12,0,0" PlaceholderText="Adresse" Background="#CCFFFFFF" BorderBrush="#CCFFFFFF"/>
+                <TextBox Width="350" Text="{Binding Ch.Customer_Zipcode, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,12,0,0" PlaceholderText="Postnr" Background="#CCFFFFFF" BorderBrush="#CCFFFFFF"/>
+                <TextBox Width="350" Text="{Binding Ch.Customer_City, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,12,0,0" PlaceholderText="By" Background="#CCFFFFFF" BorderBrush="#CCFFFFFF"/>
+                <TextBox Width="350" Text="{Binding Ch.Customer_Phone, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,12,0,0" PlaceholderText="Mobilnummer" Background="#CCFFFFFF" BorderBrush="#CCFFFFFF"/>
+                <DatePicker Width="350" Date="{Binding Ch.Customer_Birthday, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Margin="0,12,0,0" Background="White" BorderBrush="White"/>
+                <TextBox Width="350" Text="{Binding Ch.Customer_Gender, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,12,0,0" PlaceholderText="Køn" Background="#CCFFFFFF" BorderBrush="#CCFFFFFF"/>
+                <PasswordBox Width="350" Password="{Binding Ch.Customer_Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="0,12,0,0" PlaceholderText="Password" Background="#CCFFFFFF" BorderBrush="#CCFFFFFF"/>
+                <Grid Margin="0,12,0,0">
+                    <Rectangle x:ConnectionId='24' x:Name="OpretBrugerBtnBack" Width="350" Height="35" Fill="#CC448AFF"                                                                                  />
+                    <TextBlock x:ConnectionId='25' x:Name="OpretBrugerBtnText" Width="350" Height="20" Text="Opret Bruger" Foreground="#E5FFFFFF" FontWeight="SemiBold" TextAlignment="Center"                                                                                  >
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:CallMethodAction TargetObject="{Binding Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MethodName="CreateCustomerLogin"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                </Grid>
+            </StackPanel>
+            <Rectangle HorizontalAlignment="Center" Width="450" Height="1" Margin="0,0,0,390" Fill="#2F000000"/>
+        </Grid>
+        <Rectangle x:ConnectionId='7' x:Name="InfoPopupBackground" Height="40" Width="228" VerticalAlignment="Bottom" HorizontalAlignment="Right" Fill="#99FFFFFF" Margin="0,0,40,40"                                                                  />
+        <TextBlock x:ConnectionId='8' Text="INFORMATION OM OS" FontWeight="SemiBold" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,40" Height="40" Width="228" Padding="0,9,0,9" TextAlignment="Center" Foreground="Black"                                                                                            />
+        <Popup x:ConnectionId='9' x:Name="InfoPopup" IsOpen="False" Width="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,268,645">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Bottom"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollMode="Enabled" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,20" Width="228" Height="560" Background="#E5FFFFFF" Padding="12 12" FontFamily="Segoe UI">
+                <StackPanel>
+                    <TextBlock Text="ÅBNINSTIDER" FontWeight="SemiBold" Margin="0,0,0,9" FontSize="18"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Mandag" Width="80"/>
+                        <TextBlock Text="Lukket"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Tirsdag" Width="80"/>
+                        <TextBlock Text="16:00 - 20:00"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Onsdag" Width="80"/>
+                        <TextBlock Text="17:30 - 20.00"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Torsdag" Width="80"/>
+                        <TextBlock Text="17.00 - 20:00"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Fredag" Width="80"/>
+                        <TextBlock Text="Lukket"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                        <TextBlock Text="Lørdag" Width="80"/>
+                        <TextBlock Text="Lukket"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Søndag" Width="80"/>
+                        <TextBlock Text="Lukket"/>
+                    </StackPanel>
+                    <TextBlock Text="ALDERSGRÆNSE" FontWeight="SemiBold" Margin="0,22,0,9" FontSize="18"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="En person under 15 år skal være i følgeskab med forældre eller værge for at blive piercet"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="En person der er 15 år eller ældre kan egenhændigt blive piercet, undtagen intim-piercinger"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="En person over 18 år kan egenhændigt få lavet alle piercinger"/>
+                    <TextBlock Text="MATERIALER" FontWeight="SemiBold" Margin="0,22,0,9" FontSize="18"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="Vi udføre piercinger med disse smykke materialer"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="Titanium - 6Al-4V-Eli F-136"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="Niobium"/>
+                    <TextBlock Text="PRISER" FontWeight="SemiBold" Margin="0,22,0,9" FontSize="18"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="Bemærk:"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="Alle priser excl. smykke (med mindre andet er beskrevet)"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="priser på smykker starter fra 100,- kr"/>
+                    <TextBlock Margin="0,0,0,5" TextWrapping="Wrap" Text="**Det er ikke muligt at benytte eget smykkestart."/>
+                    <TextBlock Text="REBELLIC" FontWeight="SemiBold" Margin="0,22,0,9" FontSize="18" FontFamily="Segoe UI"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xEC06;" Margin="0,2,3,0"/>
+                        <StackPanel>
+                            <TextBlock Text="Snogebækvej 59"/>
+                            <TextBlock Text="4600 Ølby, Køge"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE715;" Margin="0,4,3,0"/>
+                        <StackPanel>
+                            <TextBlock Text="contact@rebellic.me"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"  Margin="0,3,0,0">
+                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE717;" Margin="0,3,3,0"/>
+                        <StackPanel>
+                            <TextBlock Text="12345678"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Popup>
+
+        <Grid x:ConnectionId='10' VerticalAlignment="Top" Visibility="Collapsed" HorizontalAlignment="Right" Margin="0,40,40,0"                                                                                              >
+            <Grid x:ConnectionId='19' x:Name="profileOpenImg" HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="59" Margin="0,00,00,0"                                                                                                  >
+                <Grid.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="Assets/defaultPic.jpg"/>
+                </Grid.Background>
+            </Grid>
+            <Grid x:ConnectionId='20' x:Name="profileOpen" HorizontalAlignment="Right" Height="59" VerticalAlignment="Top" Width="169" Margin="0,0,59,0"                                Background="#EDFFFFFF"                                                                    />
+            <StackPanel Visibility="{Binding ProfileUserGrid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Orientation="Horizontal">
+                <TextBlock x:ConnectionId='21' x:Name="ProfileArrowDown" FontFamily="Segoe MDL2 Assets" Text="&#xE70D;" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,3,0,0" FontWeight="SemiBold" Foreground="#FF333333"                                                                                                  />
+                <TextBlock x:ConnectionId='22' x:Name="ProfileArrowUp" Visibility="Collapsed" FontFamily="Segoe MDL2 Assets" Text="&#xE70E;" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,3,0,0" FontWeight="SemiBold" Foreground="#FF333333"                                                                                                  />
+                <TextBlock x:ConnectionId='23' Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" Margin="5,0,0,0" FontWeight="SemiBold" Foreground="#FF333333" Width="120"                                                                                                  />
+            </StackPanel>
+        </Grid>
+        <Popup x:ConnectionId='11' x:Name="myPopup" IsOpen="False" Width="0" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,104,268,0">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Top"/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <StackPanel x:ConnectionId='12' VerticalAlignment="Top" HorizontalAlignment="Right" Width="228" Background="#FEFFFFFF"                                                                    >
+                <StackPanel Orientation="Horizontal" Padding="10 10">
+                    <TextBlock x:ConnectionId='17' Margin="0,2,5,0" x:Name="setting1Ikon" AccessKey="0" FontFamily="Segoe MDL2 Assets" Text="&#xE77B;" Foreground="#FF333333" TextAlignment="Left"/>
+                    <TextBlock x:ConnectionId='18' x:Name="setting1" AccessKey="0" Text="Gå til profil" Foreground="#FF333333" TextAlignment="Left"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Padding="10 12">
+                    <TextBlock x:ConnectionId='15' Margin="0,2,5,0" x:Name="setting2Ikon" AccessKey="0" FontFamily="Segoe MDL2 Assets" Text="&#xE713;" Foreground="#FF333333" TextAlignment="Left"/>
+                    <TextBlock x:ConnectionId='16' x:Name="setting2" AccessKey="0" Text="Se bookinger" Foreground="#FF333333" TextAlignment="Left"/>
+                </StackPanel>
+                <Rectangle Height="2" Fill="#19000000"/>
+                <StackPanel Orientation="Horizontal" Padding="10,12,10,10">
+                    <TextBlock x:ConnectionId='13' Margin="0,2,5,0" x:Name="setting3Ikon" AccessKey="0" FontFamily="Segoe MDL2 Assets" Text="&#xE8A7;" Foreground="#FF333333" TextAlignment="Left" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-1"/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <TextBlock x:ConnectionId='14' x:Name="setting3" AccessKey="0" Text="Log ud" Foreground="#FF333333" TextAlignment="Left"/>
+                </StackPanel>
+            </StackPanel>
+        </Popup>
+    </Grid>
+</Page>
+

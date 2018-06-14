@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="RebellicContext-Web.config Connection String" description="RebellicContext Connection String used in web.config by the application to access the database." defaultValue="data source=rebelbook.database.windows.net;initial catalog=RebelBookDB;persist security info=True;user id=semesterprojekt;password=Rebelbook1234;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\rasmu\\Desktop\\Rebellic\\WebService\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='RebellicContext']/@connectionString" />
+  </parameter>
+</parameters>

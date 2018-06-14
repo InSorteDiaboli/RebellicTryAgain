@@ -1,0 +1,2 @@
+MainPackage=C:\Users\rasmu\Desktop\Rebellic\Rebellic\bin\ARM\Debug\Rebellic_1.0.0.0_ARM_Debug.appx
+SymbolPackage=C:\Users\rasmu\Desktop\Rebellic\Rebellic\AppPackages\Rebellic_1.0.0.0_Debug_Test\Rebellic_1.0.0.0_ARM_Debug.appxsym

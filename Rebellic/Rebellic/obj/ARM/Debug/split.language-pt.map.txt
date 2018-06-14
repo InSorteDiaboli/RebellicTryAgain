@@ -1,0 +1,6 @@
+﻿[ResourceMetadata]
+"ResourceId"			"split.language-pt"
+"ResourceDimensions"		"language-pt-br"
+
+[Files]
+"C:\Users\rasmu\Desktop\Rebellic\Rebellic\obj\ARM\Debug\split.language-pt.pri"			"resources.pri"
